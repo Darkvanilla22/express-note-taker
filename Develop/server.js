@@ -1,21 +1,25 @@
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
+const express = require('express'); // Import express
+const path = require('path'); // Import path
+const fs = require('fs'); // Import fs
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+const app = express(); // Create express app
+const PORT = process.env.PORT || 3000; // Set PORT
 
+// Middleware for parsing JSON and serving static files
 app.use(express.json());
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
+// Routes for HTML files (index.html)
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Routes for HTML files (notes.html)
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, 'notes.html'));
 });
 
+// Routes for API endpoints (GET, POST, DELETE)
 app.get('/api/notes', (req, res) => {
     fs.readFile(path.join(__dirname, 'db/db.json'), 'utf8', (err, data) => {
         if (err) {
@@ -26,6 +30,7 @@ app.get('/api/notes', (req, res) => {
     });
 });
 
+// POST request to add a new note
 app.post('/api/notes', (req, res) => {
     const newNote = { ...req.body, id: Date.now() };
     fs.readFile(path.join(__dirname, 'db/db.json'), 'utf8', (err, data) => {
@@ -45,6 +50,7 @@ app.post('/api/notes', (req, res) => {
     });
 });
 
+// DELETE request to delete a note
 app.delete('/api/notes/:id', (req, res) => {
     const noteId = parseInt(req.params.id);
     fs.readFile(path.join(__dirname, 'db/db.json'), 'utf8', (err, data) => {
@@ -64,6 +70,7 @@ app.delete('/api/notes/:id', (req, res) => {
     });
 });
 
+// Start server on PORT 3000
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
