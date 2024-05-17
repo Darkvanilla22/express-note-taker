@@ -59,7 +59,7 @@ app.delete('/api/notes/:id', (req, res) => {
                 res.status(500).json({ error: 'Error deleting note.' });
                 return;
             }
-            res.status(204).send();
+            res.status(204).send(); // Correct response for successful delete with no content to return
         });
     });
 });
