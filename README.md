@@ -13,6 +13,7 @@ The Express Note Taker is a web application that simplifies writing notes for ev
 - [Usage](#usage)
 - [License](#license)
 - [Contributing](#contributing)
+- [Deployed App](#deployed-app)
 
 ## Installation
 
@@ -44,6 +45,10 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 4. Commit your changes (`git commit -am 'Add new feature'`)
 5. Push to the branch (`git push origin feature`)
 6. Create a new Pull Request
+
+## Deployed App
+
+[Heroku App](https://express-note-taker-fadda8ca939d.herokuapp.com/)
 
 ## Questions
 
