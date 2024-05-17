@@ -21,10 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
     const handleFetchErrors = (response) => {
       if (!response.ok) {
-        throw Error('The server returned an error: ' + response.statusText);
+          throw Error('The server returned an error: ' + response.statusText);
       }
-      return response.json();
-    };
+      return response.json(); // This line expects a JSON response
+  };
   
     const getNotes = () =>
       fetch('/api/notes', {
@@ -43,13 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
         body: JSON.stringify(note),
       }).then(handleFetchErrors);
   
-    const deleteNote = (id) =>
-      fetch(`/api/notes/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then(handleFetchErrors);
+      const deleteNote = (id) =>
+        fetch(`/api/notes/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then(handleFetchErrors);
   
     const renderActiveNote = () => {
       hide(saveNoteBtn);
